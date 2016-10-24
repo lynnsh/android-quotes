@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "408679699557",
+    "firebase_url": "https://qwnasfirebasequotes.firebaseio.com",
+    "project_id": "qwnasfirebasequotes",
+    "storage_bucket": "qwnasfirebasequotes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408679699557:android:9daf843c93fcc252",
+        "android_client_info": {
+          "package_name": "android518.qwnasfirebasequotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408679699557-h3eteg10ofulbl1l64elkqog6ubme5gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqRkdnnzH-KWZv0kFwmZCE3mZ80J1rqQQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
