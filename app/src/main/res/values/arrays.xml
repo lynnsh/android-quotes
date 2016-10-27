@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>CompSci</item>
+        <item>Fiction</item>
+        <item>Humour</item>
+        <item>Philosophy</item>
+        <item>Tv</item>
+    </string-array>
+</resources>
