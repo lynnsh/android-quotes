@@ -14,7 +14,9 @@ public class QuoteActivity extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         if (b != null) {
             Quote q = (Quote)b.getSerializable("quote");
-            Log.d("QUOTE", q.toString());
+            //q is null if no last quote was saved
+            if(q != null)
+                Log.d("QUOTE", q.toString());
         }
     }
 }

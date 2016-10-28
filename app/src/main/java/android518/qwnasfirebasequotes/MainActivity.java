@@ -11,12 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.Random;
 
@@ -26,33 +26,29 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference database;
     private String[] categories;
     private Random random;
-    private int gen;
     private Quote current;
-    private Quote last;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Retrieving Shared Preferences
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-
-
-        database = FirebaseDatabase.getInstance().getReference();
         random = new Random();
 
-        ListView lv=(ListView) findViewById(R.id.cat_list);
-        categories = getResources().getStringArray(R.array.categories);
-        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories);
-        lv.setAdapter(aa);
+        database = FirebaseDatabase.getInstance().getReference();
+        getCategories();
+        //categories = getResources().getStringArray(R.array.categories);
+    }
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                generateQuote(position);
-            }
-        });
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(current);
+        editor.putString("quote", json);
+        editor.commit();
     }
 
     private void generateQuote(int position) {
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     int count = (int)dataSnapshot.child("attributed").getChildrenCount();
-                    gen = random.nextInt(count);
+                    int gen = random.nextInt(count);
                     String attr = dataSnapshot.child("attributed").child(gen+"").getValue().toString();
                     String blurb = dataSnapshot.child("blurb").child(gen+"").getValue().toString();
                     String q = dataSnapshot.child("quote").child(gen+"").getValue().toString();
@@ -75,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
+                public void onCancelled(DatabaseError databaseError) {}
             });
     }
 
@@ -93,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.last:
-                //sendQuote(last); to do
+                sendQuote(retrieveLastQuote());
                 return true;
             case R.id.about:
                 startActivity(new Intent(this, About.class));
                 return true;
             case R.id.random:
-                //to do
+                generateRandomQuote();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,5 +105,53 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, QuoteActivity.class);
         i.putExtra("quote", q);
         startActivity(i);
+    }
+
+    private void generateRandomQuote() {
+        int category = random.nextInt(categories.length);
+        generateQuote(category);
+    }
+
+    private Quote retrieveLastQuote() {
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("quote", "");
+        return gson.fromJson(json, Quote.class);
+    }
+
+    private void getCategories() {
+        database.addListenerForSingleValueEvent
+                (new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        int size = (int)dataSnapshot.getChildrenCount();
+                        categories = new String[size];
+                        Iterable<DataSnapshot> iterator = dataSnapshot.getChildren();
+                        int index = 0;
+                        for(DataSnapshot d : iterator) {
+                            categories[index] =  d.getKey().toString();
+                            index++;
+                            Log.d("MAIN", categories[index-1]);
+                        }
+                        setListView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+    }
+
+    private void setListView() {
+        ListView lv=(ListView) findViewById(R.id.cat_list);
+
+        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories);
+        lv.setAdapter(aa);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                generateQuote(position);
+            }
+        });
     }
 }
