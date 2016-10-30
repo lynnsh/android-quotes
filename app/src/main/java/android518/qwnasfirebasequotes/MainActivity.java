@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> aa;
     private DatabaseReference database;
+    private FirebaseAuth firebaseAuth;
     private String[] categories;
     private Random random;
     private Quote current;
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         random = new Random();
 
         database = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signInWithEmailAndPassword("firebasedroid518@gmail.com","firebaseassignment");
+
+
         getCategories();
         //categories = getResources().getStringArray(R.array.categories);
     }
