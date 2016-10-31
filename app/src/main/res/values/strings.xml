@@ -9,4 +9,5 @@
     <string name="quote">quote</string>
     <string name="reference">reference</string>
     <string name="date">date</string>
+    <string name="dismiss">Dismiss</string>
 </resources>

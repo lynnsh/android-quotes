@@ -13,20 +13,43 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:text="@string/quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quoteTextView"
+            android:textSize="30sp"
+            android:gravity="fill_horizontal"/>
 
         <TextView
             android:text="@string/attributed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/attributedTextView"
-            android:onClick="displayBlurb"/>
+            android:fontFamily="sans-serif"
+            android:textStyle="italic"
+            android:textSize="24sp"
+            android:layout_weight="1"
+            android:gravity="right" />
 
         <TextView
-            android:text="@string/quote"
+            android:text="@string/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/quoteTextView" />
+            android:id="@+id/dateTextView"
+            android:gravity="right"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="bottom">
 
         <TextView
             android:text="@string/reference"
@@ -34,10 +57,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/referenceTextView" />
 
-        <TextView
-            android:text="@string/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dateTextView" />
     </LinearLayout>
+
 </RelativeLayout>
