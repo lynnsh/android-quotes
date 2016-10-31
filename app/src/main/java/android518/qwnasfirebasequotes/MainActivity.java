@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithEmailAndPassword("firebasedroid518@gmail.com","firebaseassignment");
 
-
         getCategories();
         //categories = getResources().getStringArray(R.array.categories);
     }
@@ -56,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         String json = gson.toJson(current);
         editor.putString("quote", json);
         editor.commit();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //firebaseAuth.signOut();
     }
 
     private void generateQuote(int position) {
@@ -136,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                         Iterable<DataSnapshot> iterator = dataSnapshot.getChildren();
                         int index = 0;
                         for(DataSnapshot d : iterator) {
-                            categories[index] =  d.getKey().toString();
+                            categories[index] =  d.getKey();
                             index++;
                             Log.d("MAIN", categories[index-1]);
                         }
@@ -151,8 +156,10 @@ public class MainActivity extends AppCompatActivity {
     private void setListView() {
         ListView lv=(ListView) findViewById(R.id.cat_list);
 
-        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories);
-        lv.setAdapter(aa);
+        int[] images = {R.drawable.compsci, R.drawable.fiction, R.drawable.humour,
+                        R.drawable.philosophy, R.drawable.tv};
+
+        lv.setAdapter(new CustomAdapter(this, R.layout.list, categories, images));
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
