@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">QWNASFirebaseQuotes</string>
+    <string name="name">Quotes</string>
+    <string name="explain">Choose a category to see a random quote:</string>
     <string name="about">About</string>
     <string name="random">Random</string>
     <string name="last">Last Run</string>
