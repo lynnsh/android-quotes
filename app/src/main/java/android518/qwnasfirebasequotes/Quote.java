@@ -25,6 +25,29 @@ public class Quote implements Serializable {
         //this.category = category;
     }
 
+    public String getAttributed()
+    {
+        return this.attributed;
+    }
+
+    public String getBlurb()
+    {
+        return this.blurb;
+    }
+    public String getQuote()
+    {
+        return this.quote;
+    }
+    public String getReference()
+    {
+        return this.reference;
+    }
+    public String getDate()
+    {
+        return this.date;
+    }
+
+
     public String toString() {
         return "attributed: " + attributed + "; blurb: " + blurb + "; quote: " + quote +
                 "; reference: " + reference + "; date: " + date;

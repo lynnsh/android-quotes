@@ -10,4 +10,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="android518.qwnasfirebasequotes.QuoteActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/attributed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/attributedTextView"
+            android:onClick="displayBlurb"/>
+
+        <TextView
+            android:text="@string/quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quoteTextView" />
+
+        <TextView
+            android:text="@string/reference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/referenceTextView" />
+
+        <TextView
+            android:text="@string/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateTextView" />
+    </LinearLayout>
 </RelativeLayout>
