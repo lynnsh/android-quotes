@@ -22,25 +22,30 @@
             android:layout_height="wrap_content"
             android:id="@+id/quoteTextView"
             android:textSize="30sp"
-            android:gravity="fill_horizontal"/>
+            android:textStyle="italic"
+            android:fontFamily="sans-serif-light"
+            android:gravity="fill_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
         <TextView
             android:text="@string/attributed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/attributedTextView"
-            android:fontFamily="sans-serif"
-            android:textStyle="italic"
+
             android:textSize="24sp"
             android:layout_weight="1"
-            android:gravity="right" />
+            android:gravity="right"
+            android:layout_marginRight="20dp" />
 
         <TextView
             android:text="@string/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dateTextView"
-            android:gravity="right"/>
+            android:gravity="right"
+            android:layout_marginRight="20dp" />
 
     </LinearLayout>
 

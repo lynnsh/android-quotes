@@ -38,7 +38,7 @@ public class QuoteActivity extends AppCompatActivity {
         TextView date_textview = (TextView) findViewById(R.id.dateTextView);
 
         attr_textview.setText("- " + quote.getAttributed());
-        quote_textview.setText(quote.getQuote());
+        quote_textview.setText("\" " + quote.getQuote() + " \"");
         ref_textview.setText(quote.getReference());
         date_textview.setText(quote.getDate());
 

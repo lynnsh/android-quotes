@@ -10,4 +10,8 @@
     <string name="reference">reference</string>
     <string name="date">date</string>
     <string name="dismiss">Dismiss</string>
+    <string name="aboutTitle">About this application…</string>
+    <string name="description">Choose from one of the categories available and the application will display a random quote.
+    You may decide to choose a random category with the Random button. You may also pick out the last quote read with the Last Run button.</string>
+    <string name="authors">William Ngo and Alena Shulzhenko</string>
 </resources>
