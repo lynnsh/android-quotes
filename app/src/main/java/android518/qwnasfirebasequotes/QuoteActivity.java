@@ -14,6 +14,15 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+/**
+ * This activity displays all the information pertaining to
+ * a quote that has been passed from the mainActivity.
+ *
+ * @author William Ngo
+ *         Alena Shulzhenko
+ *
+ * @version 2016-11-04
+ */
 public class QuoteActivity extends AppCompatActivity {
     Quote q = new Quote("no data", "no data", "no data", "no data", "no data");
 
@@ -41,12 +50,13 @@ public class QuoteActivity extends AppCompatActivity {
     private void displayQuote(final Quote quote)
     {
         try {
-
+            //Get all textviews
             TextView attr_textview = (TextView) findViewById(R.id.attributedTextView);
             TextView quote_textview = (TextView) findViewById(R.id.quoteTextView);
             TextView ref_textview = (TextView) findViewById(R.id.referenceTextView);
             TextView date_textview = (TextView) findViewById(R.id.dateTextView);
 
+            //Set all fields of a quote to the textviews
             attr_textview.setText("- " + quote.getAttributed());
             quote_textview.setText("\" " + quote.getQuote() + " \"");
             ref_textview.setText(quote.getReference());
@@ -62,20 +72,6 @@ public class QuoteActivity extends AppCompatActivity {
                     displayBlurb(quote);
                 }
             });
-
-
-
-            /*Add onClick event to open browser to the page of the reference of the quote
-            ref_textview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String url = quote.getReference();
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-            });
-            */
         }
         catch(NullPointerException npe)
         {
@@ -99,7 +95,7 @@ public class QuoteActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.dismiss, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Do nothing, just dismiss the dialog
+                        //Do nothing, just dismiss the dialog since this is a NegativeButton
                     }
                 });
 

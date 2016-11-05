@@ -4,7 +4,10 @@ package android518.qwnasfirebasequotes;
 import java.io.Serializable;
 
 /**
- * Created by aline on 26/10/16.
+ * @author William Ngo
+ *         Alena Shulzhenko
+ *
+ * @version 2016-11-04
  */
 
 public class Quote implements Serializable {
@@ -25,11 +28,11 @@ public class Quote implements Serializable {
         //this.category = category;
     }
 
+    //Getters
     public String getAttributed()
     {
         return this.attributed;
     }
-
     public String getBlurb()
     {
         return this.blurb;
@@ -42,10 +45,7 @@ public class Quote implements Serializable {
     {
         return this.reference;
     }
-    public String getDate()
-    {
-        return this.date;
-    }
+    public String getDate() { return this.date; }
 
 
     public String toString() {
