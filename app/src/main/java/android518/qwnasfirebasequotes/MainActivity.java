@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] categories;
     private Random random;
     private Quote currentQuote;
-    private static final String TAG = "MAIN";
 
     /**
      * Lifecycle method. Signs in to Firebase and displays the list of categories.
@@ -104,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void finish() {
         firebaseAuth.signOut();
-        Log.d(TAG, "in finish()");
         super.finish();
     }
 
@@ -130,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                     currentQuote = createQuote(dataSnapshot, generatedInt);
                     saveCurrentQuote();
                     sendQuote(currentQuote);
-                    Log.i(TAG, currentQuote.toString());
                 }
 
                 @Override
